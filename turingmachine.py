@@ -57,3 +57,54 @@ class TuringMachine:
 
         return "Aceptada", descriptions
 
+def cargar_mt(file_path):
+    with open(file_path, 'r') as file:
+        config = yaml.safe_load(file)
+
+    states = config['q_states']['q_list']
+    initial_state = config['q_states']['initial']
+    final_states = [config['q_states']['final']]
+    tape_alphabet = config['tape_alphabet']
+    transitions = {}
+
+    for transition in config['delta']:
+        params = transition['params']
+        output = transition['output']
+        key = (params['initial_state'], params['tape_input'])
+        value = (
+            output['final_state'],
+            output['tape_output'],
+            output['tape_displacement']
+        )
+        transitions[key] = value
+
+    cadenas_simulacion = config.get('simulation_strings', [])
+
+    return {
+        "states": states,
+        "initial_state": initial_state,
+        "final_states": final_states,
+        "tape_alphabet": tape_alphabet,
+        "transitions": transitions,
+        "simulation_strings": cadenas_simulacion
+    }
+if __name__ == "__main__":
+    yaml_file = "estructura-mt.yaml"
+
+    tm_config = cargar_mt(yaml_file)
+
+    tm = TuringMachine(
+        states=tm_config["states"],
+        initial_state=tm_config["initial_state"],
+        final_states=tm_config["final_states"],
+        tape_alphabet=tm_config["tape_alphabet"],
+        transitions=tm_config["transitions"]
+    )
+
+    for input_string in tm_config["simulation_strings"]:
+        print(f"Cadena simulada: {input_string}")
+        result, descriptions = tm.run(input_string)
+        
+        for step, desc in enumerate(descriptions):
+            print(f"Step {step}:\n{desc}\n")
+        print(f"Resultado: {result}\n{'-'*40}")
