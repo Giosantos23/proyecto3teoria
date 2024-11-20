@@ -2,17 +2,22 @@ q_states:
   q_list:
     - q0
     - q1
+    - q2
+    - q3
     - qf
+    - qr
   initial: q0
   final: qf
 
 alphabet:
   - a
   - b
+  - "!"
 
 tape_alphabet:
   - a
   - b
+  - "!"
   - _
 
 delta:
@@ -21,16 +26,105 @@ delta:
       tape_input: a
     output:
       final_state: q1
-      tape_output: b
+      tape_output: _
       tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: "!"
+    output:
+      final_state: qr
+      tape_output: "!"
+      tape_displacement: S
+  - params:
+      initial_state: q0
+      tape_input: b
+    output:
+      final_state: qr
+      tape_output: b
+      tape_displacement: S
+  - params:
+      initial_state: q0
+      tape_input: _
+    output:
+      final_state: qr
+      tape_output: _
+      tape_displacement: S
+
+  # Estado q1: Buscar el primer '!'
+  - params:
+      initial_state: q1
+      tape_input: "!"
+    output:
+      final_state: q2
+      tape_output: "!"
+      tape_displacement: R
+  - params:
+      initial_state: q1
+      tape_input: a
+    output:
+      final_state: q1
+      tape_output: a
+      tape_displacement: R
+  - params:
+      initial_state: q1
+      tape_input: b
+    output:
+      final_state: qr
+      tape_output: b
+      tape_displacement: S
   - params:
       initial_state: q1
       tape_input: _
     output:
-      final_state: qf
+      final_state: qr
       tape_output: _
+      tape_displacement: S
+
+  - params:
+      initial_state: q2
+      tape_input: b
+    output:
+      final_state: q3
+      tape_output: b
       tape_displacement: R
+  - params:
+      initial_state: q2
+      tape_input: "!"
+    output:
+      final_state: qr
+      tape_output: "!"
+      tape_displacement: S
+  - params:
+      initial_state: q2
+      tape_input: _
+    output:
+      final_state: qr
+      tape_output: _
+      tape_displacement: S
+  - params:
+      initial_state: q3
+      tape_input: "!"
+    output:
+      final_state: qf
+      tape_output: "!"
+      tape_displacement: R
+  - params:
+      initial_state: q3
+      tape_input: b
+    output:
+      final_state: q3
+      tape_output: b
+      tape_displacement: R
+  - params:
+      initial_state: q3
+      tape_input: _
+    output:
+      final_state: qr
+      tape_output: _
+      tape_displacement: S
 
 simulation_strings:
-  - a
-  - aa
+  - "aa!bb!"
+  - "a!b!"
+  - "b!"
+  - "aa!!bb"
