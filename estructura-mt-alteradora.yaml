@@ -1,0 +1,118 @@
+q_states:
+  q_list: ['q0', 'q1', 'q2', 'q3', 'accept']
+  initial: 'q0'
+  final: 'accept'
+tape_alphabet:
+  - 'a'
+  - 'b'
+  - 'c'
+  - '_'
+delta:
+  # Fase 1: Avanzar al final de la cinta
+  - params:
+      initial_state: 'q0'
+      tape_input: 'a'
+    output:
+      final_state: 'q0'
+      tape_output: 'a'
+      tape_displacement: 'R'
+  - params:
+      initial_state: 'q0'
+      tape_input: 'b'
+    output:
+      final_state: 'q0'
+      tape_output: 'b'
+      tape_displacement: 'R'
+  - params:
+      initial_state: 'q0'
+      tape_input: 'c'
+    output:
+      final_state: 'q0'
+      tape_output: 'c'
+      tape_displacement: 'R'
+  - params:
+      initial_state: 'q0'
+      tape_input: '_'
+    output:
+      final_state: 'q1'
+      tape_output: '_'
+      tape_displacement: 'L'
+
+  # Fase 2: Copiar el último símbolo y marcarlo como procesado
+  - params:
+      initial_state: 'q1'
+      tape_input: 'a'
+    output:
+      final_state: 'q2'
+      tape_output: '_'
+      tape_displacement: 'L'
+  - params:
+      initial_state: 'q1'
+      tape_input: 'b'
+    output:
+      final_state: 'q2'
+      tape_output: '_'
+      tape_displacement: 'L'
+  - params:
+      initial_state: 'q1'
+      tape_input: 'c'
+    output:
+      final_state: 'q2'
+      tape_output: '_'
+      tape_displacement: 'L'
+
+  # Fase 3: Regresar al inicio de la cinta
+  - params:
+      initial_state: 'q2'
+      tape_input: 'a'
+    output:
+      final_state: 'q2'
+      tape_output: 'a'
+      tape_displacement: 'L'
+  - params:
+      initial_state: 'q2'
+      tape_input: 'b'
+    output:
+      final_state: 'q2'
+      tape_output: 'b'
+      tape_displacement: 'L'
+  - params:
+      initial_state: 'q2'
+      tape_input: 'c'
+    output:
+      final_state: 'q2'
+      tape_output: 'c'
+      tape_displacement: 'L'
+  - params:
+      initial_state: 'q2'
+      tape_input: '_'
+    output:
+      final_state: 'q3'
+      tape_output: '_'
+      tape_displacement: 'R'
+
+  # Fase 4: Escribir el símbolo copiado al inicio
+  - params:
+      initial_state: 'q3'
+      tape_input: '_'
+    output:
+      final_state: 'q0'
+      tape_output: 'a'
+      tape_displacement: 'R'
+
+  # Finalizar cuando no quedan más símbolos
+  - params:
+      initial_state: 'q0'
+      tape_input: '_'
+    output:
+      final_state: 'accept'
+      tape_output: '_'
+      tape_displacement: 'S'
+
+
+simulation_strings:
+  - 'abcba'
+  - 'aaaaa'
+  - 'ababa'
+  - 'bcbcb'
+  - 'abc'
