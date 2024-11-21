@@ -1,118 +1,264 @@
 q_states:
-  q_list: ['q0', 'q1', 'q2', 'q3', 'accept']
-  initial: 'q0'
-  final: 'accept'
+  q_list:
+    - q0
+    - qf
+  initial: q0
+  final: qf
+
+alphabet:
+  - a
+  - b
+  - c
+  - d
+  - e
+  - f
+  - g
+  - h
+  - i
+  - j
+  - k
+  - l
+  - m
+  - n
+  - o
+  - p
+  - q
+  - r
+  - s
+  - t
+  - u
+  - v
+  - w
+  - x
+  - y
+  - z
+
 tape_alphabet:
-  - 'a'
-  - 'b'
-  - 'c'
-  - '_'
+  - a
+  - b
+  - c
+  - d
+  - e
+  - f
+  - g
+  - h
+  - i
+  - j
+  - k
+  - l
+  - m
+  - n
+  - o
+  - p
+  - q
+  - r
+  - s
+  - t
+  - u
+  - v
+  - w
+  - x
+  - y
+  - z
+  - _
+  - >
+
 delta:
-  # Fase 1: Avanzar al final de la cinta
+  # Cambiar letras a binario
   - params:
-      initial_state: 'q0'
-      tape_input: 'a'
+      initial_state: q0
+      tape_input: a
     output:
-      final_state: 'q0'
-      tape_output: 'a'
-      tape_displacement: 'R'
+      final_state: q0
+      tape_output: "01100001"
+      tape_displacement: R
   - params:
-      initial_state: 'q0'
-      tape_input: 'b'
+      initial_state: q0
+      tape_input: b
     output:
-      final_state: 'q0'
-      tape_output: 'b'
-      tape_displacement: 'R'
+      final_state: q0
+      tape_output: "01100010"
+      tape_displacement: R
   - params:
-      initial_state: 'q0'
-      tape_input: 'c'
+      initial_state: q0
+      tape_input: c
     output:
-      final_state: 'q0'
-      tape_output: 'c'
-      tape_displacement: 'R'
+      final_state: q0
+      tape_output: "01100011"
+      tape_displacement: R
   - params:
-      initial_state: 'q0'
-      tape_input: '_'
+      initial_state: q0
+      tape_input: d
     output:
-      final_state: 'q1'
-      tape_output: '_'
-      tape_displacement: 'L'
+      final_state: q0
+      tape_output: "01100100"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: e
+    output:
+      final_state: q0
+      tape_output: "01100101"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: f
+    output:
+      final_state: q0
+      tape_output: "01100110"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: g
+    output:
+      final_state: q0
+      tape_output: "01100111"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: h
+    output:
+      final_state: q0
+      tape_output: "01101000"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: i
+    output:
+      final_state: q0
+      tape_output: "01101001"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: j
+    output:
+      final_state: q0
+      tape_output: "01101010"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: k
+    output:
+      final_state: q0
+      tape_output: "01101011"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: l
+    output:
+      final_state: q0
+      tape_output: "01101100"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: m
+    output:
+      final_state: q0
+      tape_output: "01101101"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: n
+    output:
+      final_state: q0
+      tape_output: "01101110"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: o
+    output:
+      final_state: q0
+      tape_output: "01101111"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: p
+    output:
+      final_state: q0
+      tape_output: "01110000"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: q
+    output:
+      final_state: q0
+      tape_output: "01110001"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: r
+    output:
+      final_state: q0
+      tape_output: "01110010"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: s
+    output:
+      final_state: q0
+      tape_output: "01110011"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: t
+    output:
+      final_state: q0
+      tape_output: "01110100"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: u
+    output:
+      final_state: q0
+      tape_output: "01110101"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: v
+    output:
+      final_state: q0
+      tape_output: "01110110"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: w
+    output:
+      final_state: q0
+      tape_output: "01110111"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: x
+    output:
+      final_state: q0
+      tape_output: "01111000"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: y
+    output:
+      final_state: q0
+      tape_output: "01111001"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: z
+    output:
+      final_state: q0
+      tape_output: "01111010"
+      tape_displacement: R
+  - params:
+      initial_state: q0
+      tape_input: _
+    output:
+      final_state: qf
+      tape_output: "_"
+      tape_displacement: S
 
-  # Fase 2: Copiar el último símbolo y marcarlo como procesado
-  - params:
-      initial_state: 'q1'
-      tape_input: 'a'
-    output:
-      final_state: 'q2'
-      tape_output: '_'
-      tape_displacement: 'L'
-  - params:
-      initial_state: 'q1'
-      tape_input: 'b'
-    output:
-      final_state: 'q2'
-      tape_output: '_'
-      tape_displacement: 'L'
-  - params:
-      initial_state: 'q1'
-      tape_input: 'c'
-    output:
-      final_state: 'q2'
-      tape_output: '_'
-      tape_displacement: 'L'
-
-  # Fase 3: Regresar al inicio de la cinta
-  - params:
-      initial_state: 'q2'
-      tape_input: 'a'
-    output:
-      final_state: 'q2'
-      tape_output: 'a'
-      tape_displacement: 'L'
-  - params:
-      initial_state: 'q2'
-      tape_input: 'b'
-    output:
-      final_state: 'q2'
-      tape_output: 'b'
-      tape_displacement: 'L'
-  - params:
-      initial_state: 'q2'
-      tape_input: 'c'
-    output:
-      final_state: 'q2'
-      tape_output: 'c'
-      tape_displacement: 'L'
-  - params:
-      initial_state: 'q2'
-      tape_input: '_'
-    output:
-      final_state: 'q3'
-      tape_output: '_'
-      tape_displacement: 'R'
-
-  # Fase 4: Escribir el símbolo copiado al inicio
-  - params:
-      initial_state: 'q3'
-      tape_input: '_'
-    output:
-      final_state: 'q0'
-      tape_output: 'a'
-      tape_displacement: 'R'
-
-  # Finalizar cuando no quedan más símbolos
-  - params:
-      initial_state: 'q0'
-      tape_input: '_'
-    output:
-      final_state: 'accept'
-      tape_output: '_'
-      tape_displacement: 'S'
 
 
 simulation_strings:
-  - 'abcba'
-  - 'aaaaa'
-  - 'ababa'
-  - 'bcbcb'
-  - 'abc'
+  - alexis
+  - giovani
+  - brolo
+  - joaquin

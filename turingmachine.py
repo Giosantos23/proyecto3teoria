@@ -45,17 +45,21 @@ class TuringMachine:
         return f"Tape: {tape_str}\nHead: {head_indicator}\nState: {self.current_state}"
 
     def run(self, input_string):
-
         self.reiniciar(input_string)
         descriptions = [self.get_descripcion()]
 
         while self.current_state not in self.final_states:
             step_result = self.step()
             if not step_result:
-                return "Rechazada", descriptions  
+                return "Rechazada", descriptions  # No hay transición válida
             descriptions.append(step_result)
 
+        # Generar resultado final de la cinta
+        tape_final = ''.join(self.tape).rstrip('_')  # Elimina símbolos extra de la cinta
+        descriptions.append(f"Resultado final en la cinta: {tape_final}")
+        
         return "Aceptada", descriptions
+
 
 def cargar_mt(file_path):
     with open(file_path, 'r') as file:
@@ -88,9 +92,7 @@ def cargar_mt(file_path):
         "transitions": transitions,
         "simulation_strings": cadenas_simulacion
     }
-if __name__ == "__main__":
-    yaml_file = "estructura-mt.yaml"
-
+def procesar_archivo(yaml_file):
     tm_config = cargar_mt(yaml_file)
 
     tm = TuringMachine(
@@ -101,10 +103,19 @@ if __name__ == "__main__":
         transitions=tm_config["transitions"]
     )
 
+    print(f"\nProcesando archivo: {yaml_file}\n{'='*40}\n")
+
     for input_string in tm_config["simulation_strings"]:
         print(f"Cadena simulada: {input_string}")
         result, descriptions = tm.run(input_string)
-        
         for step, desc in enumerate(descriptions):
             print(f"Step {step}:\n{desc}\n")
-        print(f"Resultado: {result}\n{'-'*40}")
+        print(f"Resultado: {result}\n{'-'*40}\n")
+
+
+if __name__ == "__main__":
+    # Archivos a procesar
+    archivos_yaml = ["estructura-mt.yaml", "estructura-mt-alteradora.yaml"]
+
+    for archivo in archivos_yaml:
+        procesar_archivo(archivo)
